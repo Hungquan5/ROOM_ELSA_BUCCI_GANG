@@ -1,6 +1,6 @@
 # BUCCI_GANG_SYSTEM
 <p align="center">
-  <img src="final/System_Architecture.jpg" alt="System Architecture">
+  <img src="System_Architecture.jpg" alt="System Architecture">
 </p>
 
 This tool matches furniture objects to scenes based on text descriptions and context image using a combination of CLIP and InternVL models. It processes scenes with masked areas and finds the most suitable objects to place in those areas based on visual and textual similarity.
