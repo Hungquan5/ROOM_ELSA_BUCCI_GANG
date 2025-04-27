@@ -1,6 +1,9 @@
-# Scene-Object Matching
+# BUCCI_GANG_SYSTEM
+<p align="center">
+  <img src="final/System_Architecture.jpg" alt="System Architecture">
+</p>
 
-This tool matches furniture objects to scenes based on text descriptions using a combination of CLIP and InternVL models. It processes scenes with masked areas and finds the most suitable objects to place in those areas based on visual and textual similarity.
+This tool matches furniture objects to scenes based on text descriptions and context image using a combination of CLIP and InternVL models. It processes scenes with masked areas and finds the most suitable objects to place in those areas based on visual and textual similarity.
 
 ## Features
 
@@ -14,8 +17,8 @@ This tool matches furniture objects to scenes based on text descriptions using a
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/scene-object-matching.git
-   cd scene-object-matching
+   git clone https://github.com/Hungquan5/ROOM_ELSA_BUCCI_GANG
+   cd ROOM_ELSE_BUCCI_GANG
    ```
 
 2. Install dependencies:
@@ -55,9 +58,9 @@ objects/
 Basic usage:
 
 ```bash
-python scene_object_matcher.py --scenes-dir /path/to/scenes \
-                             --objects-dir /path/to/objects \
-                             --output-dir /path/to/output
+python main.py  --scenes-dir /path/to/scenes \
+                --objects-dir /path/to/objects \
+                --output-dir /path/to/output
 ```
 
 ### Command Line Arguments
@@ -85,7 +88,7 @@ python scene_object_matcher.py --scenes-dir /path/to/scenes \
 Run with default parameters:
 
 ```bash
-python scene_object_matcher.py --scenes-dir ./scenes --objects-dir ./objects --output-dir ./output
+python main.py --scenes-dir ./scenes --objects-dir ./objects --output-dir ./output
 ```
 
 Run with custom weight parameters:

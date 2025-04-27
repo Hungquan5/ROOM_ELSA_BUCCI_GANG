@@ -594,7 +594,7 @@ def process_scene(scene_dir, output_dir, obj_paths, obj_feats, clip_model, clip_
     for rank, p in enumerate(ranked_paths, 1):
         shutil.copy(p, out_dir / f"top{rank}.jpg")
     
-    print(f"✓ [{scene_idx:02d}] saved to {out_dir.relative_to(output_dir.parent)}")
+    print(f"✓ [{scene_idx}] saved to {out_dir.relative_to(output_dir.parent)}")
     
     # Return row for CSV
     return [scene_dir.name] + [p.parent.name for p in ranked_paths]
