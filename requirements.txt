@@ -1,0 +1,7 @@
+open_clip_torch
+spacy
+transformers
+torch
+torchvision
+tqdm
+pillow
