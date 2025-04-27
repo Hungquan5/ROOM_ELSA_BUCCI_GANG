@@ -94,7 +94,7 @@ python main.py --scenes-dir ./scenes --objects-dir ./objects --output-dir ./outp
 Run with custom weight parameters:
 
 ```bash
-python scene_object_matcher.py --scenes-dir ./scenes \
+python main.py --scenes-dir ./scenes \
                              --objects-dir ./objects \
                              --output-dir ./output \
                              --phrase-weight 0.3 \
@@ -104,7 +104,7 @@ python scene_object_matcher.py --scenes-dir ./scenes \
 Run with both models on a single GPU:
 
 ```bash
-python scene_object_matcher.py --scenes-dir ./scenes \
+python main.py --scenes-dir ./scenes \
                              --objects-dir ./objects \
                              --output-dir ./output \
                              --internvl-device cuda:0 \
