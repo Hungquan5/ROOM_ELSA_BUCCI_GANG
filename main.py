@@ -26,7 +26,6 @@ from transformers import AutoModel, AutoTokenizer
 import spacy
 from collections import defaultdict
 
-
 def parse_arguments():
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(description="Scene-Object Matching using CLIP and InternVL")
@@ -70,6 +69,16 @@ def parse_arguments():
                         help="Device for InternVL model")
     parser.add_argument("--clip-device", type=str, default="cuda:1",
                         help="Device for CLIP model")
+    
+    # InternVL generation configuration
+    parser.add_argument("--do-sample", type=bool, default=True,
+                        help="Whether to use sampling for InternVL generation")
+    parser.add_argument("--max-length", type=int, default=2048,
+                        help="Maximum length for InternVL generation")
+    parser.add_argument("--temperature", type=float, default=0.7,
+                        help="Temperature for InternVL generation sampling")
+    parser.add_argument("--top-p", type=float, default=0.95,
+                        help="Top-p (nucleus sampling) value for InternVL generation")
     
     return parser.parse_args()
 
@@ -155,7 +164,7 @@ def load_image(image_file, input_size=448, max_num=12):
     return pixel_values
 
 
-def load_internvl_model(model_path, device):
+def load_internvl_model(model_path, device, do_sample=True, max_length=2048, temperature=0.7, top_p=0.95):
     """Load and configure InternVL model."""
     model = (AutoModel
              .from_pretrained(model_path,
@@ -170,12 +179,12 @@ def load_internvl_model(model_path, device):
                                               trust_remote_code=True,
                                               use_fast=False)
 
-    # Generation configuration
+    # Generation configuration with parameters
     generation_config = {
-        "do_sample": True,
-        "max_length": 2048,
-        "temperature": 0.7,
-        "top_p": 0.95,
+        "do_sample": do_sample,
+        "max_length": max_length,
+        "temperature": temperature,
+        "top_p": top_p,
     }
     
     return model, tokenizer, generation_config
@@ -620,7 +629,15 @@ def main():
     # Load models
     print(f"Loading InternVL model from {args.internvl_model}...")
     internvl_model, internvl_tokenizer, generation_config = load_internvl_model(
-        args.internvl_model, internvl_device)
+        args.internvl_model, 
+        internvl_device,
+        do_sample=args.do_sample,
+        max_length=args.max_length,
+        temperature=args.temperature,
+        top_p=args.top_p
+    )
+    
+    # Rest of the code remains the same...
     
     print(f"Loading CLIP model {args.clip_model}...")
     clip_model, clip_tokenizer, preprocess = load_clip_model(
